@@ -1,0 +1,55 @@
+version: '3'
+services:
+  portainer:
+    container_name: portainer
+    image: portainer/portainer
+    command: -H unix:///var/run/docker.sock
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /home/pi/portainer:/data
+    environment:
+      - TZ=America/Sao_Paulo
+    ports:
+      - 9000:9000
+    restart: always
+
+
+  homeassistant:
+    container_name: homeassistant
+    image: homeassistant/home-assistant:stable
+    volumes:
+      - /home/pi/homeassistant/config:/config
+    environment:
+      - TZ=America/Sao_Paulo
+    ports:
+      - "8123:8123"    
+    restart: always
+
+
+  mqtt:
+    container_name: mqtt
+    image: eclipse-mosquitto:latest
+    volumes:
+      - /home/pi/homeassistant/addons/mqtt/config:/mosquitto/config
+      - /home/pi/homeassistant/addons/mqtt/data:/mosquitto/data
+      - /home/pi/homeassistant/addons/mqtt/log:/mosquitto/log
+    environment:
+      - TZ=America/Sao_Paulo
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    restart: always
+    network_mode: host
+
+
+  nodered:
+    container_name: node-red
+    image: nodered/node-red
+    volumes:
+      - /home/pi/homeassistant/addons/node-red:/data
+    environment:
+      - TZ=America/Sao_Paulo
+    ports:
+      - "1880:1880"
+    user: 1000:1000
+    restart: always
