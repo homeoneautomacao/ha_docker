@@ -18,7 +18,7 @@ Observações Importantes:
 - Use o Balena Etcher para queimar a ISO no cartão
   https://www.balena.io/
 
-- Coloque o cabo de rede, teclado, cc2531 e o cartão no PI
+- Coloque o cabo de rede, monitor, teclado, cc2531 e o cartão no PI
   
 - Ligue o PI
   usuário: pi
