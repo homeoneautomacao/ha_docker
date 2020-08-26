@@ -111,8 +111,8 @@ Ex: docker exec -it 546040b5f50c sh
 Obs: Esse comando acima entra no container do mosquito
 
 - Ao abrir o prompt sem erro, execute o comando abaixo para criar o arquivo com a senha criptografada do mosquitto
-mosquitto_passwd -c /mosquitto/config/mosquitto.passwd pi
-# Coloque a senha escolhida para a senha <SENHA_DO_MQTT>
+mosquitto_passwd -c /mosquitto/config/mosquitto.passwd <USUARIO_DO_MQTT>
+# Coloque o usuário e senha escolhida para o MQTT
 
 exit
 
